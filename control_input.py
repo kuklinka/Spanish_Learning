@@ -1,11 +1,8 @@
-def control_user_input(person, conjugated_verb, user_input):
-
-    answer = " ".join([person, conjugated_verb])
-
-    if " ".join([person, conjugated_verb]) == user_input:
+def control_user_input(answer, user_input):
+    if answer == user_input:
         print("Correct")
         return True
     else:
-        print(f"Incorrect, answer: {answer}")
+        print(f"Incorrect")
         return False
 
