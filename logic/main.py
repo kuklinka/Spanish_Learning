@@ -4,7 +4,7 @@ from grammar_rules import conjugate_regular_verbs
 from control_input import control_user_input
 
 # load a json file with regular verbs
-path_regular_verbs = "regular_verbs.json"
+path_regular_verbs = "C:/Users/Kirill/OneDrive/Desktop/Spanish_Learning/database/regular_verbs.json"
 data_dict = load_json_file_from_path(path_regular_verbs)
 
 while True:
