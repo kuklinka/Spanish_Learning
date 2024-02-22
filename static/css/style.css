@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Vertical alignment */
+    height: 100vh; /* Set height to 100% of viewport height for vertical alignment */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4
+}
+
+.user_input {
+    height: 500;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+  
+#feedback {
+    font-size: 14px;
+    color: #666;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}
