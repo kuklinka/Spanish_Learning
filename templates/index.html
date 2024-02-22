@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
     <link rel="stylesheet" href="../static/css/style.css">
+    <script>
+        // Access JSON data from the context variable passed by Django
+        var jsonData = "{{ json_data|escapejs }}";
+    </script>
     <script src="../static/js/script.js"></script>
 </head>
 <body>
@@ -12,9 +16,16 @@
         <h1>Spanish Learning App</h1>
     </div>
     <div class="container">
-        <h1>{{ first_word }}</h1>
+        <h1 id="person"> </h1>
+        <h1 id="first_word">{{ first_word }}</h1>       
         <input type="text" id="userInput" placeholder="Type a word in Spansih">
         <h1>Feedback</h1>
     </div>
+    <script>
+        var person = takeRandomPersonFromList();
+        var personElement = document.getElementById("person");
+        console.log(personElement);
+        personElement.textContent = person;
+    </script>
 </body>
 </html>

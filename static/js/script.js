@@ -1,5 +1,10 @@
-// Access JSON data passed from the view
-var jsonData = JSON.parse('{{ json_data }}');
+// Take a random person from the person list
+function takeRandomPersonFromList() {
+    var personList = ["yo", "tu", "el", "ella", "usted", "nosotros", "ellos", "ellas", "ustedes"];
+    var randomIndex = Math.floor(Math.random() * personList.length);
+    return personList[randomIndex];
+}
 
-// Process JSON data as needed
-console.log(jsonData);
+// Access JSON data passed from the view
+var jsonData = JSON.parse(jsonData);
+
