@@ -16,6 +16,7 @@ function conjugateRegularVerbs(person, verb) {
         }
     }
 
+    // The rules for changing spanish regular verbs
     const ending = verb.slice(-2);
     if (person === "yo") {
         return verb.slice(0, -2) + "o";
@@ -50,6 +51,9 @@ var person = takeRandomPersonFromList();
 var personElement = document.getElementById("person");
 personElement.textContent = person;
 
+// Retrieve the element for feedback
+feedback = document.getElementById("feedback");
+
 // Get the text box element
 var userInput = document.getElementById("userInput");
 userInput.addEventListener("keypress", function(event) {
@@ -64,13 +68,19 @@ userInput.addEventListener("keypress", function(event) {
         var conjugatedVerb = conjugateRegularVerbs(person, verb);
         var answer = person + " " + conjugatedVerb;
 
+        console.log(answer);
+
         // Check if user input is correct
         correctAnswer = controlUserInput(answer, userInputText);
 
         // If correct input, set person and verb to a new value
-        if (!correctAnswer) {
+        if (correctAnswer) {
             person = takeRandomPersonFromList();
             personElement.textContent = person;
+
+            // Provide user with positive feedback 
+            feedback.style.backgroundColor = "green";
+            feedback.textContent = "correct, next!";
             
             // Retrieve the first key in the json file to change the verb
             var jsonKeys = Object.keys(jsonData);
@@ -81,12 +91,15 @@ userInput.addEventListener("keypress", function(event) {
                 delete jsonData[firstKey];
             }
             else {
-                
+                // No verbs left
+                feedback.style.backgroundColor = "yellow";
+                feedback.textContent = "restart!";
             }
         }
         // If not correct input
         else {
-
+            feedback.style.backgroundColor = "red";
+            feedback.textContent = "incorrect!";
         }
     }
 });
