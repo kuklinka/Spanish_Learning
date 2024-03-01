@@ -8,6 +8,8 @@
     <script>
         // Access JSON data from the context variable passed by Django
         var jsonData = "{{ json_data|escapejs }}";
+        var verb = "{{ first_word|escapejs }}";
+        var translation =  "{{ first_translation|escapejs }}";
     </script>
 </head>
 <body>
@@ -15,9 +17,9 @@
         <h1>Spanish Learning App</h1>
     </div>
     <div class="container">
-        <h1 id="person"></h1>
-        <h1 id="verb">{{ first_word }}</h1>       
-        <input type="text" id="userInput" placeholder="Type a word in Spansih">
+        <h1 id="personVerb"></h1>
+        <h1 id="translation"></h1>
+        <input type="text" id="userInput" placeholder="Write here your answer!">
         <h1 id="feedback"></h1>
     </div>
     <script src="../static/js/script.js"></script>

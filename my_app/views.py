@@ -8,6 +8,7 @@ def homepage_view(request):
     first_item = json_data.popitem()
     first_word, first_translation = first_item
     json_data = json.dumps(json_data)
+    print(first_translation)
     """
     modify this by adding a randomizer!
     """
