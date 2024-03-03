@@ -35,18 +35,28 @@ function conjugateRegularVerbs(person, verb) {
 }
 
 // Control user input
-function controlUserVerbConjugation(userInput) {
+function controlUserVerbConjugation(userInputText) {
 
     // Give the right answer
     var conjugatedVerb = conjugateRegularVerbs(person, verb);
     var answer = person + " " + conjugatedVerb;
 
-    if (answer === userInput) {
-    
-        // Provide user with positive feedback 
-        feedback.style.backgroundColor = "green";
-        feedback.textContent = "correct, next!";
-        
+    if (answer === userInputText || attempts === 0) {
+        // Remove user input
+        userInput.value = ""
+
+        if (attempts === 0){
+            alert("You are run out of attempts, the answer is: " + answer);
+        }
+        else{
+            // Provide user with positive feedback 
+            feedback.style.backgroundColor = "green";
+            feedback.textContent = "correct, next!";
+        }
+
+         // Reset the variable attempts
+         attempts = 3;
+
         // Retrieve the first key in the json file to change the verb
         var jsonKeys = Object.keys(jsonData);
         if (jsonKeys.length > 0) {
@@ -74,20 +84,32 @@ function controlUserVerbConjugation(userInput) {
     else {
         feedback.style.backgroundColor = "red";
         feedback.textContent = "incorrect!";
+        attempts -= 1;
     }
 }
 
 // Control user input
-function controlUserTranslation(userInput){
+function controlUserTranslation(userInputText){
 
-    if (translation === userInput) {
+    if (translation === userInputText || attempts === 0) {
+        // Remove user input
+        userInput.value = ""
+
+        if (attempts === 0){
+            alert("You are run out of attempts, the answer is: " + translation);
+        }
+        else{
+            // Provide user with positive feedback 
+            feedback.style.backgroundColor = "green";
+            feedback.textContent = "correct, next!";
+        }
+
+        // Reset the variable attempts
+        attempts = 3;
+
         // Change to the next transatlion and delete the first pair
         translation = next_translation;
         translationElement.textContent = "Write here your translation of: " + verb;
-
-        // Provide user with positive feedback 
-        feedback.style.backgroundColor = "green";
-        feedback.textContent = "correct, next!";
 
         // Hide translation and make person and verb visible 
         personVerbElement.style.display = 'block';
@@ -96,6 +118,7 @@ function controlUserTranslation(userInput){
     else {
         feedback.style.backgroundColor = "red";
         feedback.textContent = "incorrect!";
+        attempts -= 1;
     }
 }
 
@@ -116,15 +139,19 @@ translationElement.style.display = 'none';
 translationElement.textContent = "Write here your translation of: " + verb;
 var next_translation;
 
+// Initilize an attempt variable
+var attempts = 3;
+
 // Get the text box element
 var userInput = document.getElementById("userInput");
 userInput.addEventListener("keypress", function(event) {
-// Check if the key pressed is Enter
+
+    // Check if the key pressed is Enter
     if (event.key === "Enter") {
         // Get user input
         var userInputText = userInput.value;
 
-        //
+        // Check if verb and person are hidden
         if (personVerbElement.style.display === "none"){
             controlUserTranslation(userInputText);
         }
